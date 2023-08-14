@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import classes from "./ListItems.module.css";
-import pic from "../../assest/meals.jpg";
+
+import DisplayItem from "./DisplayItem";
 
 const DUMMY_ItemS = [
   {
@@ -59,30 +60,21 @@ const DUMMY_ItemS = [
   },
 ];
 
-export default function ListItems() {
-
+export default function ListItems(props){
   const dislpayItem = DUMMY_ItemS.map((item)=>(
-    <div className={classes.cards}>
-    <div className={classes.image}>
-      <img src={pic} alt="sf" />  
-    </div>
-    <div className={classes.title}>
-      <h1>{item.name}</h1>
-    </div>
-    <div className={classes.desc}>
-      <p>{item.description}</p>
-      <p>{item.price}</p>
-      <button className={classes.button}>Add</button>
-    </div>
-  </div>
+    <DisplayItem
+      id={item.id} // this is new!
+      key={item.id}
+      title={item.name}
+      desc={item.description}
+      price={item.price}
+    />
   ))
   return (
     <Fragment>
       <div className={classes.row}>
       {dislpayItem}
       </div>
-
     </Fragment>
-
   );
 }
