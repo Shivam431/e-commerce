@@ -7,6 +7,13 @@ import Cart from "./component/Cart/Cart";
 
 function App() {
   const [cartIsShown, setCartIsShown] = React.useState(false);
+  const [skeleton,setSekeleton]= React.useState(false);
+ 
+  React.useEffect(() => {
+    setTimeout(() => {
+      setSekeleton(true);
+    }, 3000);
+  },[]);
 
   const onClickHandler = () => {
     setCartIsShown(true);
@@ -20,7 +27,7 @@ function App() {
       {cartIsShown && <Cart onClick={hideCartHandler}/> }
      <Header onClick={onClickHandler}/>
       <main>
-        <ListItems onClick={hideCartHandler} />
+        {<ListItems  loading={skeleton}/>}
       </main>
     </CartProvider>
   );
